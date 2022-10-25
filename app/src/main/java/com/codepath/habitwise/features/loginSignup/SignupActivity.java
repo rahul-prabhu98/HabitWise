@@ -16,14 +16,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.codepath.habitwise.R;
 import com.codepath.habitwise.features.Utilities;
 import com.google.android.material.snackbar.Snackbar;
-import com.parse.ParseException;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +42,7 @@ public class SignupActivity extends AppCompatActivity implements ISignupEventLis
     Button btnAddDisplayPic;
     View viewSignup;
     CircleImageView displayPic;
+    Bitmap displayPicBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +61,7 @@ public class SignupActivity extends AppCompatActivity implements ISignupEventLis
         viewSignup = findViewById(R.id.viewSignup);
         btnSignup = findViewById(R.id.btnSignUp);
         btnAddDisplayPic = findViewById(R.id.btnAddDisplayPic);
-        displayPic = findViewById(R.id.profile_image);
+        displayPic = findViewById(R.id.ivUserProfileImage);
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,9 +111,10 @@ public class SignupActivity extends AppCompatActivity implements ISignupEventLis
             return;
         }
 
+
         try {
-            if (displayPic.getDrawingCache() != null) {
-                image = Utilities.bitmapToFile(displayPic.getDrawingCache(), this);
+            if (displayPicBitmap != null) {
+                image = Utilities.bitmapToFile(displayPicBitmap, this);
             }
         } catch (IOException ioe) {
             Log.e(TAG, "Exception occured while converting bitmap to file: " + ioe.getMessage());
@@ -221,8 +219,8 @@ public class SignupActivity extends AppCompatActivity implements ISignupEventLis
             switch (requestCode) {
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {
-                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-                        displayPic.setImageBitmap(selectedImage);
+                        displayPicBitmap = (Bitmap) data.getExtras().get("data");
+                        displayPic.setImageBitmap(displayPicBitmap);
                     }
 
                     break;
@@ -238,7 +236,8 @@ public class SignupActivity extends AppCompatActivity implements ISignupEventLis
 
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                                 String picturePath = cursor.getString(columnIndex);
-                                displayPic.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                displayPicBitmap = BitmapFactory.decodeFile(picturePath);
+                                displayPic.setImageBitmap(displayPicBitmap);
                                 cursor.close();
                             }
                         }
@@ -248,6 +247,5 @@ public class SignupActivity extends AppCompatActivity implements ISignupEventLis
             }
         }
     }
-
 
 }
