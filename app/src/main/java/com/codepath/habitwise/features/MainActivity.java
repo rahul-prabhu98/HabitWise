@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-        Log.i("MainActivity", "current user " + currentUser);
+        Log.i("MainActivity","current user: " + currentUser);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
