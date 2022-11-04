@@ -24,6 +24,7 @@ import com.codepath.habitwise.features.userProfile.FriendsListAdapter;
 import com.codepath.habitwise.features.userProfile.IUserProfileEventListner;
 import com.codepath.habitwise.features.userProfile.IUserProfileRepository;
 import com.codepath.habitwise.features.userProfile.UserProfileParseRepository;
+import com.codepath.habitwise.models.Friends;
 import com.codepath.habitwise.models.Habit;
 import com.codepath.habitwise.models.HabitUserMapping;
 import com.google.android.material.card.MaterialCardView;
@@ -324,5 +325,25 @@ public class AddHabitActivity extends AppCompatActivity implements IUserProfileE
     public void updateRvFriendsList() {
         //friendsListAdapter.notifyDataSetChanged();
         friendsSpinnerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void loadLatestFriendsList() {
+
+    }
+
+    @Override
+    public void fetchFriendRequestsSuccessful(List<Friends> newFriendRequests) {
+
+    }
+
+    @Override
+    public void fetchFriendRequestsFailed(Exception e) {
+
+    }
+
+    @Override
+    public void updateRvFriendRequests() {
+
     }
 }
