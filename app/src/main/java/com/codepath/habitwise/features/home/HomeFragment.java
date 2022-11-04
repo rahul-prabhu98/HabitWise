@@ -84,7 +84,6 @@ public class HomeFragment extends Fragment implements IHomeEventListner{
             @Override
             public void onDateSelected(Calendar date, int position) {
                 selectedCal = Utilities.getDateWithoutTimeUsingCalendar(date);
-                Log.i(TAG, selectedCal.getTime().toString() + "");
                 queryTasksByDate(selectedCal);
             }
         });
