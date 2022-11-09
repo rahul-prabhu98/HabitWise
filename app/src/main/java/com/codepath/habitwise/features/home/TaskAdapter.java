@@ -17,24 +17,22 @@ import com.codepath.habitwise.models.Habit;
 import com.codepath.habitwise.models.Task;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
-import java.util.Calendar;
+
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     private Context context;
     private List<Task> tasks;
-    private OnTaskListener globalOnTaskListener;
     public static final String TAG = "TaskAdapter";
-    public TaskAdapter(Context context , List<Task> tasks , OnTaskListener onTaskListener) {
+    public TaskAdapter(Context context , List<Task> tasks) {
         this.context= context;
         this.tasks= tasks;
-        this.globalOnTaskListener = onTaskListener;
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_task, parent, false);
-        return new ViewHolder(view, globalOnTaskListener);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -48,7 +46,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         return tasks.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle;
         private TextView tvInfo;
         private Switch toggleSwitch;
@@ -62,11 +60,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         private  int count = 0;
         private String stringCount;
         private Habit habitObject;
-        private Task taskObject;
         private List<Habit> results;
-        OnTaskListener onTaskListener;
 
-        public ViewHolder( @NonNull View itemView , OnTaskListener onTaskListener) {
+        public ViewHolder( @NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvInfo = itemView.findViewById(R.id.tvInfo);
@@ -75,12 +71,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             incrementButton = itemView.findViewById(R.id.incrementButton);
             textViewCounter = itemView.findViewById(R.id.textViewCounter);
             decrementButton = itemView.findViewById(R.id.decrementButton);
-            this.onTaskListener = onTaskListener;
-            itemView.setOnClickListener(this);
+
         }
 
         public void bind(final Task task) {
-            taskObject = task;
             count = task.getCounter();
             habitObject = task.getHabit();
             stringCount = Integer.toString(count);
@@ -149,14 +143,5 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             }
             tvInfo.setText(description);
         }
-        @Override
-        public void onClick(View view) {
-            onTaskListener.onTaskClick(habitObject , taskObject );
-
-        }
-    }
-    public interface OnTaskListener{
-        void onTaskClick ( Habit habitObj , Task task );
-
     }
 }
