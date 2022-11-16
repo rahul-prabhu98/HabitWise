@@ -205,7 +205,7 @@ public class detailsActivity extends AppCompatActivity {
             description += " everyday!";
         }
         else{
-            description += " a day, weekly!";
+            description += ", weekly!";
         }
         tvInfo.setText(description);
             }
