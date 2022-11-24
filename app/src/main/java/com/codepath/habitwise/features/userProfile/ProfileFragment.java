@@ -19,8 +19,11 @@ import com.codepath.habitwise.models.Friends;
 import com.codepath.habitwise.objectKeys.ObjParseUser;
 import com.example.flatdialoglibrary.dialog.FlatDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.parse.FindCallback;
 import com.parse.GetFileCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -70,7 +73,7 @@ public class ProfileFragment extends Fragment implements IUserProfileEventListne
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         rvFriends = view.findViewById(R.id.rvFriends);
         tvName = view.findViewById(R.id.tvName);
-        displayPic = view.findViewById(R.id.ivUserProfileImage1);
+        displayPic = view.findViewById(R.id.ivUserProfileImage);
         btnLogout = view.findViewById(R.id.btnLogout);
         tvRequests = view.findViewById(R.id.tvRequests);
         rvRequests = view.findViewById(R.id.rvRequests);
@@ -97,6 +100,7 @@ public class ProfileFragment extends Fragment implements IUserProfileEventListne
                         .setFirstTextFieldHint("Friend's Email")
                         .setFirstButtonText("SEND FRIEND REQUEST")
                         .setSecondButtonText("CANCEL")
+                        
                         .withFirstButtonListner(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -120,7 +124,7 @@ public class ProfileFragment extends Fragment implements IUserProfileEventListne
                                         } else {
                                             Toast.makeText(getContext(), "Unable to send friend request", Toast.LENGTH_LONG).show();
                                         }
-                                        Log.e(TAG, "Error occured while fetching friend: " + e.getMessage());
+                                        Log.e(TAG, "Error occurred while fetching friend: " + e.getMessage());
                                     }
                                 } else {
                                     Toast.makeText(getContext(), "Enter valid email", Toast.LENGTH_LONG).show();

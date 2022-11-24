@@ -78,7 +78,9 @@
                 android:layout_toRightOf="@+id/textViewCounter"
                 android:text="+" />
 
+
         </RelativeLayout>
+
         <TextView
             android:id="@+id/tvToday"
             style="@style/TextAppearance.AppCompat.Subhead"
@@ -272,22 +274,21 @@
         </LinearLayout>
 
         <com.applandeo.materialcalendarview.CalendarView
-            android:id="@+id/calendarViewDetails"
-            android:layout_width="match_parent"
-            android:layout_height="345dp"
-            android:layout_marginTop="24dp"
-            android:layout_gravity="center"
-            app:headerColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:type="many_days_picker"
-            app:eventsEnabled="true"
-            app:highlightedDaysLabelsColor = "@color/purple"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:selectionColor="@color/colorAccent"
-            app:todayLabelColor="@color/colorPrimaryDark"
-            />
+        android:id="@+id/calendarViewDetails"
+        android:layout_width="match_parent"
+        android:layout_height="345dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        app:eventsEnabled="true"
+        app:headerColor="@color/colorPrimary"
+        app:highlightedDaysLabelsColor="@color/purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:selectionColor="@color/colorAccent"
+        app:todayLabelColor="@color/colorPrimaryDark"
+        app:type="many_days_picker" />
 
         <Button
             android:id="@+id/btnEdit"
@@ -295,6 +296,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
+            android:background="@drawable/button_light"
             android:text="EDIT" />
 
         <Button
@@ -303,6 +305,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:background="@drawable/button_light"
             android:text="COMPLETE" />
 
         <Button
